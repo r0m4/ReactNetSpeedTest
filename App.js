@@ -1,12 +1,31 @@
 import React from 'react';
+import {Provider} from 'react-redux';
+import type {Element as ReactElement} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import loadingScreen from './modules/LandingScreen';
+import configureStore from './store/ConfigureStore';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Fedya tyt nado kakie-to bukvi pisat', shob vse zarabotalo - sho delat' ? :)</Text>
-    </View>
-  );
+const store = configureStore();
+
+class App extends React.PureComponent<any, any>{
+  constructor(props:any) {
+    super(props);
+  }
+
+  renderContent = (): ReactElement<any> => {
+    return (
+      <Provider>
+        <LandingScreen />
+      </Provider>
+    )
+  }
+
+
+  render() {
+    const content = this.renderContent();
+
+    return content;
+  } 
 }
 
 const styles = StyleSheet.create({
@@ -17,3 +36,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default  App;
