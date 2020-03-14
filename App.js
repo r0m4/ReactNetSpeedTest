@@ -2,32 +2,30 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import type {Element as ReactElement} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import loadingScreen from './modules/LandingScreen';
-import configureStore from './store/ConfigureStore';
+import Header from './modules/header';
 
-const store = configureStore();
+import './assets/css/index.css';
+
+// import configureStore from './store/ConfigureStore';
+
+// const store = configureStore();
 
 class App extends React.PureComponent<any, any>{
   constructor(props:any) {
     super(props);
   }
 
-  renderContent = (): ReactElement<any> => {
+  renderContent() {
     return (
-      <Provider>
-        <LandingScreen />
-      </Provider>
+        <Header interval="10" />
     )
   }
 
-
-  render() {
+  render(){
     const content = this.renderContent();
-
     return content;
-  } 
+  }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -36,5 +34,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
 export default  App;
