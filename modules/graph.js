@@ -22,7 +22,20 @@ class Graph extends React.Component {
     //start
     let d = "M 100 100 L 0 100 ";
     //create normalized data of speed
+    if(localStorage.getItem('history') === null){
+      localStorage.setItem('history',JSON.stringify([0]));
+    }
     let hist = JSON.parse(localStorage.getItem('history'));
+    //normilizing
+    var ratio = Math.max.apply(Math, hist) / 50,l = hist.length,i;
+    for (i = 0; i < l; i++) {
+        hist[i] = Math.round(hist[i] / ratio);
+    }
+    //grouping
+    if(hist.length>10){
+      //???
+      hist.splice(0,hist.length-10);
+    }
     //devide width by number of data points
     let step = 100/(hist.length-1);
     //itarate
